@@ -3,6 +3,14 @@ import axios from "axios";
 
 function App() {
   const endPoint = "https://67c5b4f3351c081993fb1ab6.mockapi.io/api/posts";
+
+  const initFormData = {
+    author: "",
+    title: "",
+    body: "",
+    public: false,
+  };
+
   const [formData, setFormData] = useState({
     author: "",
     title: "",
@@ -10,11 +18,28 @@ function App() {
     public: false,
   });
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log(formData);
+
+    axios
+      .post(endPoint, formData, {
+        headers: { "content-type": "application/json" },
+      })
+      .then((response) => {
+        console.log(response);
+        setFormData(initFormData);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+
   return (
     <>
       <div className="container mt-4">
         <h1 className="text-center my-4">REACT POST FORM</h1>
-        <form className="p-4 rounded border">
+        <form className="p-4 rounded border" onSubmit={handleSubmit}>
           <div className="mb-3">
             <label className="form-label">Author</label>
             <input
