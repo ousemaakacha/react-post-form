@@ -18,20 +18,32 @@ function App() {
     public: false,
   });
 
+  const [mess, setMess] = useState({
+    text: null,
+    type: "",
+  });
+
   function handleSubmit(e) {
     e.preventDefault();
     console.log(formData);
 
     axios
       .post(endPoint, formData, {
-        headers: { "content-type": "application/json" },
+        headers: { "Content-type": "application/json" },
       })
       .then((response) => {
         console.log(response);
+        if (response.status === 201) {
+          setMess({
+            text: "HAI MANDATO IL FORM...SEI CONTENTO??",
+            type: "succes",
+          });
+        }
+
         setFormData(initFormData);
       })
       .catch((err) => {
-        console.error(err);
+        setMess({ text: err.mess, type: "danger" });
       });
   }
 
@@ -39,9 +51,12 @@ function App() {
     <>
       <div className="container mt-4">
         <h1 className="text-center my-4">REACT POST FORM</h1>
+
+        {mess.text && <p className={mess.type}>{mess.text}</p>}
+
         <form className="p-4 rounded border" onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label className="form-label">Author</label>
+            <label className="form-label">AUTHOR</label>
             <input
               type="text"
               className="form-control"
@@ -81,7 +96,7 @@ function App() {
             />
           </div>
 
-          <div className="form-check">
+          <div className="form-check mb-3">
             <input
               className="form-check-input"
               type="checkbox"
