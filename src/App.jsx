@@ -15,7 +15,7 @@ function App() {
       <div className="container mt-4">
         <h1 className="text-center my-4">REACT POST FORM</h1>
         <form className="p-4 rounded border">
-          <div>
+          <div className="mb-3">
             <label className="form-label">Author</label>
             <input
               type="text"
@@ -24,6 +24,20 @@ function App() {
               value={formData.author}
               onChange={(e) =>
                 setFormData({ ...formData, author: e.target.value })
+              }
+              required
+            />
+          </div>
+
+          <div className="mb-3 ">
+            <label className="form-label">TITLE</label>
+            <input
+              type="text"
+              className="form-control"
+              name="title"
+              value={formData.title}
+              onChange={(e) =>
+                setFormData({ ...formData, title: e.target.value })
               }
               required
             />
