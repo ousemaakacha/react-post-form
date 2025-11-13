@@ -70,7 +70,9 @@ function App() {
             </label>
           </div>
 
-          <div></div>
+          <button type="submit" className="btn btn-primary">
+            SUBMIT
+          </button>
         </form>
       </div>
     </>
