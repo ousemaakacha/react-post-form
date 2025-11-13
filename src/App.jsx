@@ -42,6 +42,19 @@ function App() {
               required
             />
           </div>
+
+          <div className="mb-3">
+            <label className="form-label">BODY</label>
+            <textarea
+              name="body"
+              className="form-control"
+              value={formData.body}
+              rows="5"
+              onChange={(e) =>
+                setFormData({ ...formData, body: e.target.value })
+              }
+            />
+          </div>
         </form>
       </div>
     </>
