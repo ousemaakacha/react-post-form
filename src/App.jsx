@@ -55,6 +55,22 @@ function App() {
               }
             />
           </div>
+
+          <div className="form-check">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              name="public"
+              onChange={(e) =>
+                setFormData({ ...formData, public: e.target.value })
+              }
+            />
+            <label htmlFor="public" className="form-check-label">
+              Select if you want to publish the post
+            </label>
+          </div>
+
+          <div></div>
         </form>
       </div>
     </>
